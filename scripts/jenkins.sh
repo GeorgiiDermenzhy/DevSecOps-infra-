@@ -25,3 +25,8 @@ sudo yum -y remove git-*
 sudo yum -y install https://packages.endpointdev.com/rhel/7/os/x86_64/endpoint-repo.x86_64.rpm
 sudo yum install -y git
 git --version
+echo "========================================"
+echo "==========---Installing NPM---=========="
+echo "========================================"
+curl -sL https://rpm.nodesource.com/setup_14.x | sudo bash -
+sudo yum -y install nodejs
