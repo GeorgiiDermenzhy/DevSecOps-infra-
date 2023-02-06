@@ -30,3 +30,26 @@ echo "==========---Installing NPM---=========="
 echo "========================================"
 curl -sL https://rpm.nodesource.com/setup_14.x | sudo bash -
 sudo yum -y install nodejs
+echo "========================================"
+echo "=========---Installing Docker---========"
+echo "========================================"
+sudo yum -y remove docker \
+                  docker-client \
+                  docker-client-latest \
+                  docker-common \
+                  docker-latest \
+                  docker-latest-logrotate \
+                  docker-logrotate \
+                  docker-engine
+sudo yum install -y yum-utils
+sudo yum-config-manager \
+    --add-repo \
+    https://download.docker.com/linux/centos/docker-ce.repo
+sudo yum -y install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+sudo groupadd docker
+sudo usermod -aG docker jenkins
+sudo usermod -aG docker vagrant
+sudo systemctl enable docker
+sudo systemctl start docker
+sudo systemctl restart docker
+sudo systemctl restart jenkins
